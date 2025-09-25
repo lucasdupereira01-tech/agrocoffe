@@ -1,0 +1,43 @@
+{
+  "name": "agrocoffe-app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start:electron": "npm run build && electron .",
+    "dev:electron": "concurrently \"npm:dev\" \"wait-on http://localhost:5173 && ELECTRON_START_URL=http://localhost:5173 electron .\"",
+    "build:electron": "npm run build && electron-builder",
+    "android:ci": "npm run build && npx cap sync android && cd android && ./gradlew assembleRelease"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "firebase": "^9.22.0",
+    "@capacitor/core": "^5.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "concurrently": "^8.0.0",
+    "wait-on": "^7.0.1",
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@capacitor/cli": "^5.0.0"
+  },
+  "build": {
+    "appId": "com.agrocoffe.desktop",
+    "files": [
+      "dist/**",
+      "electron/**"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
+  }
+}

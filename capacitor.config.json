@@ -1,0 +1,6 @@
+{
+  "appId": "com.agrocoffe.app",
+  "appName": "AgroCoffe",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
